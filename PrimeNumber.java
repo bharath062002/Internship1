@@ -1,3 +1,4 @@
+//Write java program to check given is prime number
 package com.example;
 import java.util.Scanner;
 
@@ -27,3 +28,4 @@ class PrimeNumber {
             System.out.println(n + " is not a Prime number");
     }
 }
+
