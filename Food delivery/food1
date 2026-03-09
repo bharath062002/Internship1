@@ -1,0 +1,68 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class FoodDBExample {
+    public static void main(String[] args) {
+
+        String url = "jdbc:mysql://localhost:3306/food_db";
+        String user = "root";
+        String password = "Bharath@2002";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url, user, password);
+            Statement stmt = con.createStatement();
+
+            System.out.println("---- Customer ----");
+            ResultSet rs1 = stmt.executeQuery("SELECT * FROM Customer");
+            while (rs1.next()) {
+                System.out.println(rs1.getInt("id") + " " + rs1.getString("name"));
+            }
+
+            System.out.println("---- Restaurant ----");
+            ResultSet rs2 = stmt.executeQuery("SELECT * FROM Restaurant");
+            while (rs2.next()) {
+                System.out.println(rs2.getInt("id") + " " + rs2.getString("name"));
+            }
+
+            System.out.println("---- Food Item ----");
+            ResultSet rs3 = stmt.executeQuery("SELECT * FROM Food_Item");
+            while (rs3.next()) {
+                System.out.println(rs3.getInt("id") + " " +
+                        rs3.getString("name") + " " +
+                        rs3.getInt("price") + " " +
+                        rs3.getInt("restaurant_id"));
+            }
+
+            System.out.println("---- Delivery Person ----");
+            ResultSet rs4 = stmt.executeQuery("SELECT * FROM Delivery_Person");
+            while (rs4.next()) {
+                System.out.println(rs4.getInt("id") + " " + rs4.getString("name"));
+            }
+
+            System.out.println("---- Orders ----");
+            ResultSet rs5 = stmt.executeQuery("SELECT * FROM Orders");
+            while (rs5.next()) {
+                System.out.println(rs5.getInt("id") + " " +
+                        rs5.getInt("customer_id") + " " +
+                        rs5.getInt("delivery_id"));
+            }
+
+            System.out.println("---- Order Item ----");
+            ResultSet rs6 = stmt.executeQuery("SELECT * FROM Order_Item");
+            while (rs6.next()) {
+                System.out.println(rs6.getInt("order_id") + " " +
+                        rs6.getInt("food_id") + " " +
+                        rs6.getInt("quantity"));
+            }
+
+            // 5. Close Connection
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
