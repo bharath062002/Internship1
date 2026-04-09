@@ -1,0 +1,27 @@
+#!/bin/sh
+# Maven Wrapper Script
+set -e
+
+# Detect OS
+case "`uname`" in
+  CYGWIN*) CYGWIN=true;;
+  MINGW*)  MINGW=true;;
+esac
+
+MAVEN_PROJECTBASEDIR=$(cd "$(dirname "$0")" && pwd)
+MAVEN_HOME="$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven"
+MVN_CMD="$MAVEN_HOME/bin/mvn"
+
+if [ ! -d "$MAVEN_HOME" ]; then
+  echo "Downloading Maven..."
+  PROPS="$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.properties"
+  DIST_URL=$(grep distributionUrl "$PROPS" | cut -d= -f2-)
+  mkdir -p "$MAVEN_HOME"
+  curl -fsSL "$DIST_URL" -o /tmp/maven.zip
+  unzip -q /tmp/maven.zip -d /tmp/maven-dist
+  mv /tmp/maven-dist/*/* "$MAVEN_HOME/"
+  rm -rf /tmp/maven.zip /tmp/maven-dist
+  echo "Maven downloaded."
+fi
+
+exec "$MVN_CMD" "$@"

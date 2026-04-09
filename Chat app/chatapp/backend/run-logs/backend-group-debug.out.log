@@ -1,0 +1,328 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.chatapp:chatapp-backend >---------------------
+[INFO] Building ChatApp Backend 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.0:run (default-cli) > test-compile @ chatapp-backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ chatapp-backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ chatapp-backend ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 30 source files with javac [debug release 17] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ chatapp-backend ---
+[INFO] skip non existing resourceDirectory C:\Users\bhara\Downloads\nexus-chatapp\chatapp\backend\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ chatapp-backend ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 3 source files with javac [debug release 17] to target\test-classes
+[INFO] 
+[INFO] <<< spring-boot:3.2.0:run (default-cli) < test-compile @ chatapp-backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.0:run (default-cli) @ chatapp-backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2026-04-08T20:45:09.870+05:30  INFO 15752 --- [           main] com.chatapp.ChatAppApplication           : Starting ChatAppApplication using Java 17.0.15 with PID 15752 (C:\Users\bhara\Downloads\nexus-chatapp\chatapp\backend\target\classes started by bhara in C:\Users\bhara\Downloads\nexus-chatapp\chatapp\backend)
+2026-04-08T20:45:09.882+05:30 DEBUG 15752 --- [           main] com.chatapp.ChatAppApplication           : Running with Spring Boot v3.2.0, Spring v6.1.1
+2026-04-08T20:45:09.883+05:30  INFO 15752 --- [           main] com.chatapp.ChatAppApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-04-08T20:45:11.129+05:30  INFO 15752 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-04-08T20:45:11.145+05:30  INFO 15752 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-08T20:45:11.373+05:30  INFO 15752 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 217 ms. Found 4 JPA repository interfaces.
+2026-04-08T20:45:11.412+05:30  INFO 15752 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-04-08T20:45:11.414+05:30  INFO 15752 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-04-08T20:45:11.443+05:30  INFO 15752 --- [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.chatapp.repository.ChatGroupRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-08T20:45:11.444+05:30  INFO 15752 --- [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.chatapp.repository.MessageRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-08T20:45:11.444+05:30  INFO 15752 --- [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.chatapp.repository.NotificationRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-08T20:45:11.445+05:30  INFO 15752 --- [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.chatapp.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-08T20:45:11.445+05:30  INFO 15752 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2026-04-08T20:45:12.441+05:30  INFO 15752 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-04-08T20:45:12.469+05:30  INFO 15752 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-08T20:45:12.470+05:30  INFO 15752 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2026-04-08T20:45:12.570+05:30  INFO 15752 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-08T20:45:12.571+05:30  INFO 15752 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2611 ms
+2026-04-08T20:45:12.629+05:30  INFO 15752 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-08T20:45:13.047+05:30  INFO 15752 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:file:./data/chatappdb user=ROOT
+2026-04-08T20:45:13.063+05:30  INFO 15752 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-08T20:45:13.076+05:30  INFO 15752 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:./data/chatappdb'
+2026-04-08T20:45:13.260+05:30  INFO 15752 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-08T20:45:13.355+05:30  INFO 15752 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
+2026-04-08T20:45:13.412+05:30  INFO 15752 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-04-08T20:45:13.717+05:30  INFO 15752 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-08T20:45:13.791+05:30  WARN 15752 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-08T20:45:15.196+05:30  INFO 15752 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-08T20:45:15.305+05:30  INFO 15752 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-08T20:45:15.772+05:30  INFO 15752 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-08T20:45:16.273+05:30 DEBUG 15752 --- [           main] com.chatapp.security.JwtAuthFilter       : Filter 'jwtAuthFilter' configured for use
+2026-04-08T20:45:17.197+05:30  WARN 15752 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-08T20:45:17.407+05:30 DEBUG 15752 --- [           main] o.s.w.s.s.s.WebSocketHandlerMapping      : Patterns [/ws/**] in 'stompWebSocketHandlerMapping'
+2026-04-08T20:45:17.701+05:30  INFO 15752 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@26364268, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7256bc2, org.springframework.security.web.context.SecurityContextHolderFilter@2901e61e, org.springframework.security.web.header.HeaderWriterFilter@3dd7721b, org.springframework.web.filter.CorsFilter@6f056fdf, org.springframework.security.web.authentication.logout.LogoutFilter@74d82196, com.chatapp.security.JwtAuthFilter@1104cc93, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@49b6704a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@60877252, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2cbd2385, org.springframework.security.web.session.SessionManagementFilter@406a54a2, org.springframework.security.web.access.ExceptionTranslationFilter@64f5cec8, org.springframework.security.web.access.intercept.AuthorizationFilter@4d0d97e3]
+2026-04-08T20:45:17.792+05:30 DEBUG 15752 --- [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.c.c.AuthController:
+	
+2026-04-08T20:45:17.794+05:30 DEBUG 15752 --- [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.c.c.GroupController:
+	
+2026-04-08T20:45:17.794+05:30 DEBUG 15752 --- [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.c.c.MessageController:
+	
+2026-04-08T20:45:17.795+05:30 DEBUG 15752 --- [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.c.c.NotificationController:
+	
+2026-04-08T20:45:17.795+05:30 DEBUG 15752 --- [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.c.c.UserController:
+	
+2026-04-08T20:45:17.800+05:30 DEBUG 15752 --- [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.c.w.WebSocketController:
+	{[MESSAGE],[/chat.typing]}: typing(TypingEvent,Principal)
+	{[MESSAGE],[/chat.send]}: sendMessage(SendMessageRequest,Principal)
+	{[MESSAGE],[/chat.read]}: markRead(ReadReceiptEvent,Principal)
+2026-04-08T20:45:17.802+05:30 DEBUG 15752 --- [           main] .WebSocketAnnotationMethodMessageHandler : 
+	o.s.b.a.w.s.e.BasicErrorController:
+	
+2026-04-08T20:45:18.551+05:30  INFO 15752 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
+2026-04-08T20:45:18.568+05:30  INFO 15752 --- [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2026-04-08T20:45:18.570+05:30  INFO 15752 --- [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@78751d07]]
+2026-04-08T20:45:18.571+05:30  INFO 15752 --- [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2026-04-08T20:45:18.583+05:30  INFO 15752 --- [           main] com.chatapp.ChatAppApplication           : Started ChatAppApplication in 9.255 seconds (process running for 9.776)
+2026-04-08T20:45:18.601+05:30 DEBUG 15752 --- [MessageBroker-1] com.chatapp.service.UserService          : Running status cleanup task
+Hibernate: 
+    select
+        count(*) 
+    from
+        users u1_0
+2026-04-08T20:45:18.686+05:30  INFO 15752 --- [           main] com.chatapp.config.DataInitializer       : Database already seeded — skipping.
+2026-04-08T20:45:43.965+05:30  INFO 15752 --- [nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-08T20:45:43.979+05:30  INFO 15752 --- [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-08T20:45:43.987+05:30  INFO 15752 --- [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-04-08T20:45:44.013+05:30  WARN 15752 --- [nio-8081-exec-1] o.s.w.s.h.HandlerMappingIntrospector     : Cache miss for REQUEST dispatch to '/api/auth/register' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
+Hibernate: 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+Hibernate: 
+    insert 
+    into
+        users
+        (avatar_url, created_at, display_name, email, last_seen, online_status, password, status_message, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-04-08T20:45:44.495+05:30  INFO 15752 --- [nio-8081-exec-1] com.chatapp.service.AuthService          : User registered: gowner20260408204543783
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+Hibernate: 
+    insert 
+    into
+        users
+        (avatar_url, created_at, display_name, email, last_seen, online_status, password, status_message, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-04-08T20:45:44.825+05:30  INFO 15752 --- [nio-8081-exec-2] com.chatapp.service.AuthService          : User registered: gmember20260408204543783
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        g1_0.user_id,
+        g1_1.id,
+        g1_1.avatar_url,
+        g1_1.created_at,
+        g1_1.created_by,
+        g1_1.description,
+        g1_1.name 
+    from
+        user_groups g1_0 
+    join
+        chat_groups g1_1 
+            on g1_1.id=g1_0.group_id 
+    where
+        g1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        g1_0.user_id,
+        g1_1.id,
+        g1_1.avatar_url,
+        g1_1.created_at,
+        g1_1.created_by,
+        g1_1.description,
+        g1_1.name 
+    from
+        user_groups g1_0 
+    join
+        chat_groups g1_1 
+            on g1_1.id=g1_0.group_id 
+    where
+        g1_0.user_id=?
+Hibernate: 
+    insert 
+    into
+        chat_groups
+        (avatar_url, created_at, created_by, description, name, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2026-04-08T20:45:44.947+05:30  INFO 15752 --- [nio-8081-exec-3] com.chatapp.service.GroupService         : Group created: Test Group 20260408204543783 by user 129
+Hibernate: 
+    insert 
+    into
+        user_groups
+        (user_id, group_id) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        user_groups
+        (user_id, group_id) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        group_admins
+        (group_id, user_id) 
+    values
+        (?, ?)
+2026-04-08T20:46:18.559+05:30  INFO 15752 --- [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 3, active threads = 1, queued tasks = 1, completed tasks = 1]
+2026-04-08T20:46:18.587+05:30 DEBUG 15752 --- [MessageBroker-1] com.chatapp.service.UserService          : Running status cleanup task
+2026-04-08T20:47:18.589+05:30 DEBUG 15752 --- [MessageBroker-1] com.chatapp.service.UserService          : Running status cleanup task
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  03:17 min
+[INFO] Finished at: 2026-04-08T20:48:12+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.0:run (default-cli) on project chatapp-backend: Process terminated with exit code: -1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

@@ -1,0 +1,1233 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.chatapp:chatapp-backend >---------------------
+[INFO] Building ChatApp Backend 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.0:run (default-cli) > test-compile @ chatapp-backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ chatapp-backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ chatapp-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ chatapp-backend ---
+[INFO] skip non existing resourceDirectory C:\Users\bhara\Downloads\nexus-chatapp\chatapp\backend\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ chatapp-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot:3.2.0:run (default-cli) < test-compile @ chatapp-backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.0:run (default-cli) @ chatapp-backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2026-04-08T20:48:24.380+05:30  INFO 18128 --- [           main] com.chatapp.ChatAppApplication           : Starting ChatAppApplication using Java 17.0.15 with PID 18128 (C:\Users\bhara\Downloads\nexus-chatapp\chatapp\backend\target\classes started by bhara in C:\Users\bhara\Downloads\nexus-chatapp\chatapp\backend)
+2026-04-08T20:48:24.385+05:30 DEBUG 18128 --- [           main] com.chatapp.ChatAppApplication           : Running with Spring Boot v3.2.0, Spring v6.1.1
+2026-04-08T20:48:24.387+05:30  INFO 18128 --- [           main] com.chatapp.ChatAppApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-04-08T20:48:25.680+05:30  INFO 18128 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-04-08T20:48:25.696+05:30  INFO 18128 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-08T20:48:25.912+05:30  INFO 18128 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 204 ms. Found 4 JPA repository interfaces.
+2026-04-08T20:48:25.948+05:30  INFO 18128 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-04-08T20:48:25.950+05:30  INFO 18128 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-04-08T20:48:25.975+05:30  INFO 18128 --- [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.chatapp.repository.ChatGroupRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-08T20:48:25.976+05:30  INFO 18128 --- [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.chatapp.repository.MessageRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-08T20:48:25.977+05:30  INFO 18128 --- [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.chatapp.repository.NotificationRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-08T20:48:25.978+05:30  INFO 18128 --- [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.chatapp.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-08T20:48:25.979+05:30  INFO 18128 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2026-04-08T20:48:26.950+05:30  INFO 18128 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-04-08T20:48:26.978+05:30  INFO 18128 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-08T20:48:26.979+05:30  INFO 18128 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2026-04-08T20:48:27.074+05:30  INFO 18128 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-08T20:48:27.080+05:30  INFO 18128 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2613 ms
+2026-04-08T20:48:27.137+05:30  INFO 18128 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-08T20:48:27.516+05:30  INFO 18128 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:file:./data/chatappdb user=ROOT
+2026-04-08T20:48:27.534+05:30  INFO 18128 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-08T20:48:27.552+05:30  INFO 18128 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:./data/chatappdb'
+2026-04-08T20:48:27.731+05:30  INFO 18128 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-08T20:48:27.812+05:30  INFO 18128 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
+2026-04-08T20:48:27.862+05:30  INFO 18128 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-04-08T20:48:28.143+05:30  INFO 18128 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-08T20:48:28.215+05:30  WARN 18128 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-08T20:48:29.598+05:30  INFO 18128 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-08T20:48:29.692+05:30  INFO 18128 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-08T20:48:30.130+05:30  INFO 18128 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-08T20:48:30.678+05:30 DEBUG 18128 --- [           main] com.chatapp.security.JwtAuthFilter       : Filter 'jwtAuthFilter' configured for use
+2026-04-08T20:48:31.746+05:30  WARN 18128 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-08T20:48:32.042+05:30 DEBUG 18128 --- [           main] o.s.w.s.s.s.WebSocketHandlerMapping      : Patterns [/ws/**] in 'stompWebSocketHandlerMapping'
+2026-04-08T20:48:32.283+05:30  INFO 18128 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6f056fdf, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2cbd2385, org.springframework.security.web.context.SecurityContextHolderFilter@49b6704a, org.springframework.security.web.header.HeaderWriterFilter@7430d369, org.springframework.web.filter.CorsFilter@388c0178, org.springframework.security.web.authentication.logout.LogoutFilter@4f8cdeb4, com.chatapp.security.JwtAuthFilter@72e9c0a0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4610594a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1e52e3e8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@14db06d0, org.springframework.security.web.session.SessionManagementFilter@6c5ebad, org.springframework.security.web.access.ExceptionTranslationFilter@3dd7721b, org.springframework.security.web.access.intercept.AuthorizationFilter@1e2bba00]
+2026-04-08T20:48:32.383+05:30 DEBUG 18128 --- [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.c.c.AuthController:
+	
+2026-04-08T20:48:32.385+05:30 DEBUG 18128 --- [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.c.c.GroupController:
+	
+2026-04-08T20:48:32.385+05:30 DEBUG 18128 --- [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.c.c.MessageController:
+	
+2026-04-08T20:48:32.386+05:30 DEBUG 18128 --- [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.c.c.NotificationController:
+	
+2026-04-08T20:48:32.387+05:30 DEBUG 18128 --- [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.c.c.UserController:
+	
+2026-04-08T20:48:32.392+05:30 DEBUG 18128 --- [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.c.w.WebSocketController:
+	{[MESSAGE],[/chat.typing]}: typing(TypingEvent,Principal)
+	{[MESSAGE],[/chat.send]}: sendMessage(SendMessageRequest,Principal)
+	{[MESSAGE],[/chat.read]}: markRead(ReadReceiptEvent,Principal)
+2026-04-08T20:48:32.394+05:30 DEBUG 18128 --- [           main] .WebSocketAnnotationMethodMessageHandler : 
+	o.s.b.a.w.s.e.BasicErrorController:
+	
+2026-04-08T20:48:33.203+05:30  INFO 18128 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-04-08T20:48:33.220+05:30  INFO 18128 --- [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2026-04-08T20:48:33.223+05:30  INFO 18128 --- [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@53f92771]]
+2026-04-08T20:48:33.224+05:30  INFO 18128 --- [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2026-04-08T20:48:33.237+05:30  INFO 18128 --- [           main] com.chatapp.ChatAppApplication           : Started ChatAppApplication in 9.412 seconds (process running for 10.005)
+2026-04-08T20:48:33.252+05:30 DEBUG 18128 --- [MessageBroker-1] com.chatapp.service.UserService          : Running status cleanup task
+Hibernate: 
+    select
+        count(*) 
+    from
+        users u1_0
+2026-04-08T20:48:33.334+05:30  INFO 18128 --- [           main] com.chatapp.config.DataInitializer       : Database already seeded — skipping.
+2026-04-08T20:48:34.890+05:30  INFO 18128 --- [nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-08T20:48:34.890+05:30  INFO 18128 --- [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-08T20:48:34.893+05:30  INFO 18128 --- [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-04-08T20:48:34.922+05:30  WARN 18128 --- [nio-8080-exec-3] o.s.w.s.h.HandlerMappingIntrospector     : Cache miss for REQUEST dispatch to '/ws/info' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
+2026-04-08T20:48:34.947+05:30 DEBUG 18128 --- [nio-8080-exec-1] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped to org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler@6171b73a
+2026-04-08T20:48:34.947+05:30 DEBUG 18128 --- [nio-8080-exec-2] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped to org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler@6171b73a
+2026-04-08T20:48:34.947+05:30 DEBUG 18128 --- [nio-8080-exec-3] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped to org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler@6171b73a
+2026-04-08T20:48:34.962+05:30 DEBUG 18128 --- [nio-8080-exec-1] o.s.w.s.s.t.h.DefaultSockJsService       : Processing transport request: GET http://localhost:8080/ws/info?t=1775661514791
+2026-04-08T20:48:34.962+05:30 DEBUG 18128 --- [nio-8080-exec-3] o.s.w.s.s.t.h.DefaultSockJsService       : Processing transport request: GET http://localhost:8080/ws/info?t=1775661514793
+2026-04-08T20:48:34.964+05:30 DEBUG 18128 --- [nio-8080-exec-2] o.s.w.s.s.t.h.DefaultSockJsService       : Processing transport request: GET http://localhost:8080/ws/info?t=1775661514789
+2026-04-08T20:48:34.984+05:30 DEBUG 18128 --- [nio-8080-exec-4] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped to org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler@6171b73a
+2026-04-08T20:48:34.985+05:30 DEBUG 18128 --- [nio-8080-exec-4] o.s.w.s.s.t.h.DefaultSockJsService       : Processing transport request: GET http://localhost:8080/ws/info?t=1775661514793
+2026-04-08T20:48:35.007+05:30 DEBUG 18128 --- [nio-8080-exec-6] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped to org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler@6171b73a
+2026-04-08T20:48:35.008+05:30 DEBUG 18128 --- [nio-8080-exec-7] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped to org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler@6171b73a
+2026-04-08T20:48:35.011+05:30 DEBUG 18128 --- [nio-8080-exec-6] o.s.w.s.s.t.h.DefaultSockJsService       : Processing transport request: GET http://localhost:8080/ws/577/l0hrwea3/websocket
+2026-04-08T20:48:35.011+05:30 DEBUG 18128 --- [nio-8080-exec-7] o.s.w.s.s.t.h.DefaultSockJsService       : Processing transport request: GET http://localhost:8080/ws/550/ix1ggt3x/websocket
+2026-04-08T20:48:35.067+05:30 DEBUG 18128 --- [nio-8080-exec-6] s.w.s.h.LoggingWebSocketHandlerDecorator : New WebSocketServerSockJsSession[id=l0hrwea3]
+2026-04-08T20:48:35.067+05:30 DEBUG 18128 --- [nio-8080-exec-7] s.w.s.h.LoggingWebSocketHandlerDecorator : New WebSocketServerSockJsSession[id=ix1ggt3x]
+2026-04-08T20:48:35.073+05:30 DEBUG 18128 --- [nio-8080-exec-5] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped to org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler@6171b73a
+2026-04-08T20:48:35.073+05:30 DEBUG 18128 --- [nio-8080-exec-8] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped to org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler@6171b73a
+2026-04-08T20:48:35.074+05:30 DEBUG 18128 --- [nio-8080-exec-5] o.s.w.s.s.t.h.DefaultSockJsService       : Processing transport request: GET http://localhost:8080/ws/871/el50kdgm/websocket
+2026-04-08T20:48:35.075+05:30 DEBUG 18128 --- [nio-8080-exec-8] o.s.w.s.s.t.h.DefaultSockJsService       : Processing transport request: GET http://localhost:8080/ws/322/ht4lp1ir/websocket
+2026-04-08T20:48:35.078+05:30 DEBUG 18128 --- [nio-8080-exec-5] s.w.s.h.LoggingWebSocketHandlerDecorator : New WebSocketServerSockJsSession[id=el50kdgm]
+2026-04-08T20:48:35.081+05:30 DEBUG 18128 --- [nio-8080-exec-8] s.w.s.h.LoggingWebSocketHandlerDecorator : New WebSocketServerSockJsSession[id=ht4lp1ir]
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2026-04-08T20:48:35.471+05:30  INFO 18128 --- [tboundChannel-3] com.chatapp.service.UserService          : User 33 status updated to ONLINE
+2026-04-08T20:48:35.471+05:30  INFO 18128 --- [tboundChannel-1] com.chatapp.service.UserService          : User 33 status updated to ONLINE
+2026-04-08T20:48:35.471+05:30  INFO 18128 --- [tboundChannel-2] com.chatapp.service.UserService          : User 33 status updated to ONLINE
+2026-04-08T20:48:35.471+05:30  INFO 18128 --- [tboundChannel-4] com.chatapp.service.UserService          : User 33 status updated to ONLINE
+Hibernate: 
+    update
+        users 
+    set
+        avatar_url=?,
+        display_name=?,
+        email=?,
+        last_seen=?,
+        online_status=?,
+        password=?,
+        status_message=?,
+        updated_at=?,
+        username=? 
+    where
+        id=?
+Hibernate: 
+    update
+        users 
+    set
+        avatar_url=?,
+        display_name=?,
+        email=?,
+        last_seen=?,
+        online_status=?,
+        password=?,
+        status_message=?,
+        updated_at=?,
+        username=? 
+    where
+        id=?
+Hibernate: 
+    update
+        users 
+    set
+        avatar_url=?,
+        display_name=?,
+        email=?,
+        last_seen=?,
+        online_status=?,
+        password=?,
+        status_message=?,
+        updated_at=?,
+        username=? 
+    where
+        id=?
+Hibernate: 
+    update
+        users 
+    set
+        avatar_url=?,
+        display_name=?,
+        email=?,
+        last_seen=?,
+        online_status=?,
+        password=?,
+        status_message=?,
+        updated_at=?,
+        username=? 
+    where
+        id=?
+2026-04-08T20:48:35.681+05:30  INFO 18128 --- [tboundChannel-2] c.chatapp.websocket.WebSocketController  : User connected: bharath
+2026-04-08T20:48:35.681+05:30  INFO 18128 --- [tboundChannel-3] c.chatapp.websocket.WebSocketController  : User connected: bharath
+2026-04-08T20:48:35.681+05:30  INFO 18128 --- [tboundChannel-1] c.chatapp.websocket.WebSocketController  : User connected: bharath
+2026-04-08T20:48:35.681+05:30  INFO 18128 --- [tboundChannel-4] c.chatapp.websocket.WebSocketController  : User connected: bharath
+Hibernate: 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+Hibernate: 
+    insert 
+    into
+        users
+        (avatar_url, created_at, display_name, email, last_seen, online_status, password, status_message, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-04-08T20:49:00.641+05:30  INFO 18128 --- [nio-8080-exec-9] com.chatapp.service.AuthService          : User registered: gowner20260408204900294
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+Hibernate: 
+    insert 
+    into
+        users
+        (avatar_url, created_at, display_name, email, last_seen, online_status, password, status_message, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-04-08T20:49:00.886+05:30  INFO 18128 --- [nio-8080-exec-4] com.chatapp.service.AuthService          : User registered: gmember20260408204900294
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        g1_0.user_id,
+        g1_1.id,
+        g1_1.avatar_url,
+        g1_1.created_at,
+        g1_1.created_by,
+        g1_1.description,
+        g1_1.name 
+    from
+        user_groups g1_0 
+    join
+        chat_groups g1_1 
+            on g1_1.id=g1_0.group_id 
+    where
+        g1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        g1_0.user_id,
+        g1_1.id,
+        g1_1.avatar_url,
+        g1_1.created_at,
+        g1_1.created_by,
+        g1_1.description,
+        g1_1.name 
+    from
+        user_groups g1_0 
+    join
+        chat_groups g1_1 
+            on g1_1.id=g1_0.group_id 
+    where
+        g1_0.user_id=?
+Hibernate: 
+    insert 
+    into
+        chat_groups
+        (avatar_url, created_at, created_by, description, name, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2026-04-08T20:49:00.963+05:30  INFO 18128 --- [nio-8080-exec-2] com.chatapp.service.GroupService         : Group created: Test Group 20260408204900294 by user 161
+Hibernate: 
+    insert 
+    into
+        user_groups
+        (user_id, group_id) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        user_groups
+        (user_id, group_id) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        group_admins
+        (group_id, user_id) 
+    values
+        (?, ?)
+2026-04-08T20:49:33.187+05:30  INFO 18128 --- [MessageBroker-5] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[4 current WS(4)-HttpStream(0)-HttpPoll(0), 4 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(4)-CONNECTED(4)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 24, active threads = 0, queued tasks = 0, completed tasks = 72], outboundChannel[pool size = 4, active threads = 0, queued tasks = 0, completed tasks = 4], sockJsScheduler[pool size = 12, active threads = 1, queued tasks = 6, completed tasks = 21]
+2026-04-08T20:49:33.243+05:30 DEBUG 18128 --- [MessageBroker-8] com.chatapp.service.UserService          : Running status cleanup task
+2026-04-08T20:50:33.245+05:30 DEBUG 18128 --- [MessageBroker-1] com.chatapp.service.UserService          : Running status cleanup task
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        m1_0.id,
+        m1_0.content,
+        m1_0.created_at,
+        m1_0.group_id,
+        m1_0.is_deleted,
+        m1_0.media_url,
+        m1_0.read_at,
+        m1_0.receiver_id,
+        m1_0.reply_to_id,
+        m1_0.sender_id,
+        m1_0.status,
+        m1_0.type 
+    from
+        messages m1_0 
+    where
+        (
+            m1_0.sender_id=? 
+            and m1_0.receiver_id=?
+        ) 
+        or (
+            m1_0.sender_id=? 
+            and m1_0.receiver_id=?
+        ) 
+    order by
+        m1_0.created_at 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+Hibernate: 
+    update
+        messages 
+    set
+        status='READ' 
+    where
+        receiver_id=? 
+        and sender_id=? 
+        and status!='READ'
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        m1_0.id,
+        m1_0.content,
+        m1_0.created_at,
+        m1_0.group_id,
+        m1_0.is_deleted,
+        m1_0.media_url,
+        m1_0.read_at,
+        m1_0.receiver_id,
+        m1_0.reply_to_id,
+        m1_0.sender_id,
+        m1_0.status,
+        m1_0.type 
+    from
+        messages m1_0 
+    where
+        (
+            m1_0.sender_id=? 
+            and m1_0.receiver_id=?
+        ) 
+        or (
+            m1_0.sender_id=? 
+            and m1_0.receiver_id=?
+        ) 
+    order by
+        m1_0.created_at 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+Hibernate: 
+    update
+        messages 
+    set
+        status='READ' 
+    where
+        receiver_id=? 
+        and sender_id=? 
+        and status!='READ'
+2026-04-08T20:50:48.078+05:30 DEBUG 18128 --- [boundChannel-25] .WebSocketAnnotationMethodMessageHandler : Searching methods to handle SEND /app/chat.typing session=ht4lp1ir, lookupDestination='/chat.typing'
+2026-04-08T20:50:48.100+05:30 DEBUG 18128 --- [boundChannel-25] .WebSocketAnnotationMethodMessageHandler : Invoking WebSocketController#typing[2 args]
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-04-08T20:50:48.931+05:30 DEBUG 18128 --- [boundChannel-28] .WebSocketAnnotationMethodMessageHandler : Searching methods to handle SEND /app/chat.typing session=ht4lp1ir, lookupDestination='/chat.typing'
+2026-04-08T20:50:48.932+05:30 DEBUG 18128 --- [boundChannel-28] .WebSocketAnnotationMethodMessageHandler : Invoking WebSocketController#typing[2 args]
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    insert 
+    into
+        messages
+        (content, created_at, group_id, is_deleted, media_url, read_at, receiver_id, reply_to_id, sender_id, status, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        notifications
+        (body, created_at, is_read, reference_id, title, type, user_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        m1_0.id,
+        m1_0.content,
+        m1_0.created_at,
+        m1_0.group_id,
+        m1_0.is_deleted,
+        m1_0.media_url,
+        m1_0.read_at,
+        m1_0.receiver_id,
+        m1_0.reply_to_id,
+        m1_0.sender_id,
+        m1_0.status,
+        m1_0.type 
+    from
+        messages m1_0 
+    where
+        (
+            m1_0.sender_id=? 
+            and m1_0.receiver_id=?
+        ) 
+        or (
+            m1_0.sender_id=? 
+            and m1_0.receiver_id=?
+        ) 
+    order by
+        m1_0.created_at 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+Hibernate: 
+    update
+        messages 
+    set
+        status='READ' 
+    where
+        receiver_id=? 
+        and sender_id=? 
+        and status!='READ'
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        m1_0.id,
+        m1_0.content,
+        m1_0.created_at,
+        m1_0.group_id,
+        m1_0.is_deleted,
+        m1_0.media_url,
+        m1_0.read_at,
+        m1_0.receiver_id,
+        m1_0.reply_to_id,
+        m1_0.sender_id,
+        m1_0.status,
+        m1_0.type 
+    from
+        messages m1_0 
+    where
+        (
+            m1_0.sender_id=? 
+            and m1_0.receiver_id=?
+        ) 
+        or (
+            m1_0.sender_id=? 
+            and m1_0.receiver_id=?
+        ) 
+    order by
+        m1_0.created_at 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+Hibernate: 
+    update
+        messages 
+    set
+        status='READ' 
+    where
+        receiver_id=? 
+        and sender_id=? 
+        and status!='READ'
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+        or u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.last_seen,
+        u1_0.online_status,
+        u1_0.password,
+        u1_0.status_message,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    update
+        messages 
+    set
+        status='READ' 
+    where
+        receiver_id=? 
+        and sender_id=? 
+        and status!='READ'
+2026-04-08T20:51:33.246+05:30 DEBUG 18128 --- [essageBroker-11] com.chatapp.service.UserService          : Running status cleanup task

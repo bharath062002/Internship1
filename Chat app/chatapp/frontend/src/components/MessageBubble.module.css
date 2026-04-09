@@ -1,0 +1,152 @@
+.row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin: 2px 0;
+  animation: fadeIn 0.2s ease;
+}
+
+.mine {
+  flex-direction: row-reverse;
+}
+
+.theirs {
+  flex-direction: row;
+}
+
+.bubbleWrap {
+  display: flex;
+  flex-direction: column;
+  max-width: 65%;
+  min-width: 80px;
+}
+
+.mine .bubbleWrap {
+  align-items: flex-end;
+}
+
+.theirs .bubbleWrap {
+  align-items: flex-start;
+}
+
+.senderName {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 3px;
+  font-family: var(--font-mono);
+  padding-left: 12px;
+}
+
+.replyBar {
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 4px 10px;
+  border-left: 2px solid var(--accent);
+  margin-bottom: 2px;
+  font-family: var(--font-mono);
+}
+
+.bubble {
+  padding: 10px 14px;
+  position: relative;
+  word-break: break-word;
+}
+
+.sentBubble {
+  background: var(--sent-bg);
+  border: 1px solid var(--sent-border);
+  border-radius: var(--radius-bubble-sent);
+}
+
+.receivedBubble {
+  background: var(--received-bg);
+  border: 1px solid var(--received-border);
+  border-radius: var(--radius-bubble);
+}
+
+.deleted {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-style: italic;
+  padding: 8px 12px;
+}
+
+.content {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.mediaImg {
+  max-width: 100%;
+  border-radius: var(--radius-sm);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.time {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.tick {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.read {
+  color: var(--accent);
+}
+
+/* Context menu */
+.menu {
+  position: absolute;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  z-index: 10;
+  bottom: calc(100% + 4px);
+  right: 0;
+  animation: fadeIn 0.1s ease;
+  min-width: 100px;
+}
+
+.mine .menu {
+  right: 0;
+  left: auto;
+}
+
+.menuItem {
+  display: block;
+  width: 100%;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: #ff4444;
+  border-radius: var(--radius-sm);
+  text-align: left;
+  transition: background var(--transition);
+}
+
+.menuItem:hover {
+  background: rgba(255, 68, 68, 0.1);
+}
+
+.bubbleWrap {
+  position: relative;
+}
