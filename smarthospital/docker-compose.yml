@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: smarthospital-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: smarthospital
+      MYSQL_USER: shuser
+      MYSQL_PASSWORD: shpass123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: smarthospital-api
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/smarthospital?useSSL=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: shuser
+      SPRING_DATASOURCE_PASSWORD: shpass123
+      APP_JWT_SECRET: SmartHospitalDockerSecretKey2024VeryLongAndSecure
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: smarthospital-ui
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:

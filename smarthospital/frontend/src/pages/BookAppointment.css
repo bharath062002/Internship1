@@ -1,0 +1,234 @@
+.book-page { position: relative; }
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition);
+  position: relative;
+  z-index: 1;
+}
+
+.back-btn:hover { color: var(--accent-cyan); transform: translateX(-4px); }
+
+.book-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Doctor Panel */
+.doctor-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  height: fit-content;
+  position: sticky;
+  top: 88px;
+  transition: var(--transition);
+}
+
+.doctor-panel:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-glow);
+}
+
+.doctor-panel-avatar {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-teal));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--bg-primary);
+  text-transform: uppercase;
+  margin: 0 auto 1.25rem;
+  transition: var(--transition-spring);
+}
+
+.doctor-panel:hover .doctor-panel-avatar {
+  transform: scale(1.08);
+  box-shadow: 0 0 30px rgba(0,212,255,0.4);
+}
+
+.doctor-panel h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.3rem; }
+.panel-spec { color: var(--accent-cyan); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.2rem; }
+.panel-dept { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 1.25rem; }
+
+.panel-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.pstat { text-align: center; }
+.pstat-val { display: block; font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; color: var(--accent-cyan); line-height: 1; }
+.pstat-label { font-size: 0.68rem; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+
+.panel-info { text-align: left; margin-bottom: 1.5rem; }
+.pinfo-row { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.8rem; }
+.pinfo-row span { color: var(--text-muted); }
+.pinfo-row strong { color: var(--text-primary); font-weight: 600; }
+
+.working-days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+}
+
+.day-chip {
+  padding: 0.25rem 0.5rem;
+  border-radius: 100px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  background: rgba(255,255,255,0.04);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.day-chip.active {
+  background: rgba(0,212,255,0.12);
+  color: var(--accent-cyan);
+  border-color: rgba(0,212,255,0.3);
+}
+
+/* Booking Form */
+.book-form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+}
+
+.book-form-card h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.35rem; letter-spacing: -0.02em; }
+.form-subtitle { color: var(--text-muted); font-size: 0.875rem; margin-bottom: 2rem; }
+
+.time-slots {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+
+.time-slot {
+  padding: 0.55rem 0.4rem;
+  background: rgba(255,255,255,0.03);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-spring);
+  text-align: center;
+}
+
+.time-slot:hover {
+  background: rgba(0,212,255,0.06);
+  border-color: rgba(0,212,255,0.3);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.time-slot.selected {
+  background: rgba(0,212,255,0.14);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 15px rgba(0,212,255,0.2);
+  transform: translateY(-2px);
+}
+
+.book-submit {
+  width: 100%;
+  justify-content: center;
+  padding: 0.9rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Success */
+.success-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(16,185,129,0.3);
+  border-radius: var(--radius-xl);
+  padding: 3rem;
+  max-width: 540px;
+  margin: 4rem auto;
+  text-align: center;
+  box-shadow: 0 0 50px rgba(16,185,129,0.1);
+}
+
+.success-icon-wrap {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, var(--accent-teal), var(--accent-green));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 1.75rem;
+  color: var(--bg-primary);
+  font-weight: 800;
+  box-shadow: 0 0 30px rgba(16,185,129,0.35);
+  animation: pulse-glow 2s ease infinite;
+}
+
+.success-card h2 { font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem; }
+.success-card > p { color: var(--text-secondary); margin-bottom: 2rem; }
+
+.booking-details {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.detail-row:last-child { border-bottom: none; }
+.detail-row span { color: var(--text-muted); }
+.detail-row strong { color: var(--text-primary); }
+.detail-row.highlight strong { color: var(--accent-cyan); font-size: 1rem; }
+
+.success-actions { display: flex; gap: 1rem; justify-content: center; }
+
+@media (max-width: 900px) {
+  .book-layout { grid-template-columns: 1fr; }
+  .doctor-panel { position: static; }
+}
+
+@media (max-width: 480px) {
+  .time-slots { grid-template-columns: repeat(3, 1fr); }
+  .book-form-card { padding: 1.5rem; }
+}

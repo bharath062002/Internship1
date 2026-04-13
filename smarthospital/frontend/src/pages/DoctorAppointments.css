@@ -1,0 +1,15 @@
+.doc-appts-table-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.q-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--accent-cyan);
+  font-size: 1.05rem;
+}
