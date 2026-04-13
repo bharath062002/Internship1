@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumina — Build Smarter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0e0e0f;
+    --ink-mid: #3a3a40;
+    --ink-soft: #888897;
+    --bg: #fafaf8;
+    --surface: #f2f1ee;
+    --surface2: #e8e7e2;
+    --accent: #ff4d1c;
+    --accent2: #ffb800;
+    --accent-dark: #c93400;
+    --green: #1a9e6b;
+    --blue: #1a5ff5;
+    --white: #ffffff;
+    --radius: 16px;
+    --radius-sm: 8px;
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 4vw;
+    background: rgba(250,250,248,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(14,14,15,0.07);
+  }
+  .nav-logo {
+    font-family: var(--font-head);
+    font-weight: 800; font-size: 1.35rem;
+    letter-spacing: -0.03em; color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.88rem; font-weight: 500; color: var(--ink-mid);
+    text-decoration: none; letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--ink); color: var(--white);
+    border: none; border-radius: 100px;
+    padding: 0.6rem 1.4rem;
+    font-family: var(--font-body); font-size: 0.88rem; font-weight: 500;
+    cursor: pointer; transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid; place-items: center;
+    padding: 8rem 4vw 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+    max-width: 1200px; width: 100%;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #fff3ee; border: 1px solid #ffd4c2;
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-size: 0.78rem; font-weight: 500; color: var(--accent-dark);
+    letter-spacing: 0.04em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+  h1 {
+    font-family: var(--font-head);
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+    display: block;
+  }
+  .hero-sub {
+    font-size: 1.08rem; font-weight: 300; color: var(--ink-mid);
+    line-height: 1.75; max-width: 480px;
+    margin-bottom: 2.2rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: var(--white);
+    border: none; border-radius: 100px;
+    padding: 0.85rem 2rem;
+    font-family: var(--font-body); font-size: 1rem; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(255,77,28,0.3);
+  }
+  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,77,28,0.4); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--ink-mid);
+    border: 1.5px solid var(--surface2);
+    border-radius: 100px; padding: 0.82rem 1.8rem;
+    font-family: var(--font-body); font-size: 1rem; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--ink-mid); color: var(--ink); }
+  .hero-stat-row {
+    display: flex; gap: 2.5rem; margin-top: 3rem;
+  }
+  .hero-stat-num {
+    font-family: var(--font-head); font-size: 1.9rem; font-weight: 700;
+    letter-spacing: -0.03em; color: var(--ink);
+  }
+  .hero-stat-label {
+    font-size: 0.8rem; color: var(--ink-soft); font-weight: 400;
+    margin-top: 2px;
+  }
+  .hero-visual {
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .hero-card-main {
+    background: var(--white);
+    border: 1px solid var(--surface2);
+    border-radius: 24px;
+    padding: 2rem;
+    width: 100%; max-width: 400px;
+    box-shadow: 0 20px 60px rgba(14,14,15,0.1);
+    position: relative; z-index: 2;
+  }
+  .card-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #e9faf3; color: #0f6e56;
+    border-radius: 100px; padding: 0.3rem 0.8rem;
+    font-size: 0.75rem; font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
+  .card-badge::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+  }
+  .card-chart {
+    display: flex; align-items: flex-end; gap: 6px; height: 80px;
+    margin: 1rem 0;
+  }
+  .bar {
+    flex: 1; background: var(--surface); border-radius: 4px;
+    transition: transform 0.3s; position: relative;
+  }
+  .bar.active { background: var(--accent); }
+  .bar.med { background: #ffb800; }
+  .card-line {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--surface);
+    font-size: 0.82rem;
+  }
+  .card-line-label { color: var(--ink-soft); }
+  .card-line-val { font-weight: 500; color: var(--ink); }
+  .float-card {
+    position: absolute; background: var(--white);
+    border: 1px solid var(--surface2); border-radius: var(--radius);
+    padding: 0.85rem 1.1rem;
+    box-shadow: 0 12px 40px rgba(14,14,15,0.1);
+    font-size: 0.78rem; white-space: nowrap;
+  }
+  .float-card.top-right { top: -20px; right: -30px; }
+  .float-card.bot-left { bottom: -20px; left: -30px; }
+  .float-icon { font-size: 1.1rem; margin-bottom: 4px; }
+  .float-title { font-weight: 600; font-size: 0.8rem; color: var(--ink); }
+  .float-sub { color: var(--ink-soft); font-size: 0.73rem; }
+  .bg-blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); pointer-events: none; z-index: 0;
+  }
+  .blob-1 { width: 450px; height: 450px; background: rgba(255,77,28,0.08); top: 5%; right: 0; }
+  .blob-2 { width: 350px; height: 350px; background: rgba(255,184,0,0.06); bottom: 0; left: 10%; }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 6rem 4vw; }
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.9rem;
+  }
+  .section-title {
+    font-family: var(--font-head);
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700; line-height: 1.12;
+    letter-spacing: -0.03em; color: var(--ink);
+    max-width: 560px; margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem; color: var(--ink-mid);
+    font-weight: 300; line-height: 1.8;
+    max-width: 520px; margin-bottom: 3.5rem;
+  }
+  .center { text-align: center; }
+  .center .section-title, .center .section-sub { margin-left: auto; margin-right: auto; }
+  .max-w { max-width: 1200px; margin: 0 auto; }
+
+  /* ── FEATURES ── */
+  #features { background: var(--surface); }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5px;
+    background: var(--surface2);
+    border: 1.5px solid var(--surface2);
+    border-radius: var(--radius); overflow: hidden;
+    margin-top: 1rem;
+  }
+  .feature-item {
+    background: var(--surface);
+    padding: 2.2rem 2rem;
+    transition: background 0.25s;
+    position: relative;
+  }
+  .feature-item:hover { background: var(--white); }
+  .feat-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1.2rem;
+  }
+  .feat-icon.orange { background: #fff3ee; }
+  .feat-icon.yellow { background: #fffbe6; }
+  .feat-icon.green  { background: #e9faf3; }
+  .feat-icon.blue   { background: #eaf1ff; }
+  .feat-icon.purple { background: #f3f0ff; }
+  .feat-icon.pink   { background: #fff0f5; }
+  .feat-title {
+    font-family: var(--font-head); font-size: 1.05rem;
+    font-weight: 600; margin-bottom: 0.55rem; color: var(--ink);
+  }
+  .feat-desc { font-size: 0.88rem; color: var(--ink-mid); line-height: 1.7; }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--bg); }
+  .testimonials-scroll {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 0.5rem;
+  }
+  .testi-card {
+    background: var(--white);
+    border: 1px solid var(--surface2);
+    border-radius: var(--radius);
+    padding: 2rem;
+    display: flex; flex-direction: column;
+    transition: box-shadow 0.25s, transform 0.25s;
+  }
+  .testi-card:hover { box-shadow: 0 12px 40px rgba(14,14,15,0.1); transform: translateY(-3px); }
+  .testi-stars { color: var(--accent2); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 2px; }
+  .testi-quote {
+    font-size: 0.95rem; line-height: 1.75; color: var(--ink-mid);
+    font-weight: 300; flex: 1; margin-bottom: 1.5rem;
+  }
+  .testi-quote strong { color: var(--ink); font-weight: 500; }
+  .testi-avatar {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .avatar-circle {
+    width: 42px; height: 42px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600; font-size: 0.85rem; flex-shrink: 0;
+  }
+  .av-orange { background: #fff3ee; color: var(--accent-dark); }
+  .av-blue   { background: #eaf1ff; color: #1a5ff5; }
+  .av-green  { background: #e9faf3; color: #0f6e56; }
+  .testi-name { font-weight: 500; font-size: 0.88rem; color: var(--ink); }
+  .testi-role { font-size: 0.78rem; color: var(--ink-soft); }
+
+  /* ── PRICING ── */
+  #pricing { background: var(--ink); }
+  #pricing .section-label { color: var(--accent2); }
+  #pricing .section-title { color: var(--white); max-width: none; }
+  #pricing .section-sub { color: rgba(255,255,255,0.5); }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 1rem;
+  }
+  .plan-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    padding: 2.2rem 2rem;
+    display: flex; flex-direction: column;
+    transition: border-color 0.25s, transform 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .plan-card:hover { border-color: rgba(255,255,255,0.25); transform: translateY(-3px); }
+  .plan-card.popular {
+    border-color: var(--accent);
+    background: rgba(255,77,28,0.06);
+  }
+  .popular-badge {
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    background: var(--accent); color: var(--white);
+    border-radius: 100px; padding: 0.25rem 0.75rem;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .plan-name {
+    font-family: var(--font-head); font-size: 1rem;
+    font-weight: 600; color: rgba(255,255,255,0.6);
+    letter-spacing: 0.04em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .plan-price {
+    font-family: var(--font-head); font-size: 3rem;
+    font-weight: 800; letter-spacing: -0.04em; color: var(--white);
+    line-height: 1; margin-bottom: 0.4rem;
+  }
+  .plan-price sup { font-size: 1.2rem; vertical-align: super; font-weight: 500; }
+  .plan-price sub { font-size: 0.9rem; font-weight: 400; color: rgba(255,255,255,0.4); }
+  .plan-desc { font-size: 0.82rem; color: rgba(255,255,255,0.4); margin-bottom: 1.8rem; }
+  .plan-divider { height: 1px; background: rgba(255,255,255,0.1); margin-bottom: 1.8rem; }
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; flex: 1; margin-bottom: 2rem; }
+  .plan-features li {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.87rem; color: rgba(255,255,255,0.7);
+  }
+  .plan-features li::before {
+    content: '';
+    width: 16px; height: 16px; border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 8l2.5 2.5L12 5.5' stroke='rgba(255,255,255,0.5)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: contain;
+  }
+  .plan-card.popular .plan-features li::before {
+    background-color: rgba(255,77,28,0.2);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 8l2.5 2.5L12 5.5' stroke='%23ff4d1c' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+  .plan-btn {
+    width: 100%; padding: 0.85rem;
+    border-radius: 100px;
+    font-family: var(--font-body); font-size: 0.92rem; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent; color: var(--white);
+  }
+  .plan-btn:hover { background: rgba(255,255,255,0.1); }
+  .plan-card.popular .plan-btn {
+    background: var(--accent); border-color: var(--accent); color: var(--white);
+    box-shadow: 0 4px 20px rgba(255,77,28,0.4);
+  }
+  .plan-card.popular .plan-btn:hover { background: var(--accent-dark); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--surface); }
+  .contact-wrap {
+    display: grid; grid-template-columns: 1fr 1.3fr;
+    gap: 5rem; align-items: start;
+  }
+  .contact-info { padding-top: 0.5rem; }
+  .contact-detail {
+    display: flex; gap: 14px; align-items: flex-start;
+    margin-top: 2rem;
+  }
+  .contact-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: var(--white); border: 1px solid var(--surface2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-label { font-size: 0.75rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+  .contact-val { font-size: 0.92rem; font-weight: 500; color: var(--ink); }
+  .contact-form {
+    background: var(--white);
+    border: 1px solid var(--surface2);
+    border-radius: var(--radius);
+    padding: 2.4rem;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1.2rem; }
+  .form-label { font-size: 0.8rem; font-weight: 500; color: var(--ink-mid); letter-spacing: 0.01em; }
+  .form-control {
+    background: var(--surface);
+    border: 1.5px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body); font-size: 0.9rem; color: var(--ink);
+    transition: border-color 0.2s, background 0.2s;
+    outline: none; resize: none;
+  }
+  .form-control::placeholder { color: var(--ink-soft); }
+  .form-control:focus { border-color: var(--accent); background: var(--white); }
+  textarea.form-control { min-height: 120px; }
+  .form-submit {
+    width: 100%; padding: 0.9rem;
+    background: var(--accent); color: var(--white);
+    border: none; border-radius: 100px;
+    font-family: var(--font-body); font-size: 0.95rem; font-weight: 500;
+    cursor: pointer; transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 18px rgba(255,77,28,0.25);
+  }
+  .form-submit:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); color: rgba(255,255,255,0.55);
+    padding: 4rem 4vw 2.5rem;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-brand-name {
+    font-family: var(--font-head);
+    font-size: 1.35rem; font-weight: 800;
+    letter-spacing: -0.03em; color: var(--white); margin-bottom: 0.7rem;
+  }
+  .footer-brand-name span { color: var(--accent); }
+  .footer-tagline { font-size: 0.85rem; line-height: 1.7; max-width: 260px; }
+  .footer-col-title {
+    font-family: var(--font-head); font-size: 0.82rem;
+    font-weight: 600; color: var(--white);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-links a {
+    font-size: 0.85rem; color: rgba(255,255,255,0.45);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 2rem; font-size: 0.8rem;
+  }
+  .social-row { display: flex; gap: 12px; }
+  .social-btn {
+    width: 34px; height: 34px; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    background: transparent; color: rgba(255,255,255,0.5);
+    font-size: 0.82rem;
+  }
+  .social-btn:hover { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.05); color: var(--white); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * {
+    animation: slideUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+  .hero-visual { animation: slideUp 0.8s 0.3s cubic-bezier(0.22,1,0.36,1) both; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-visual { display: none; }
+    .testimonials-scroll { grid-template-columns: 1fr 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 1rem auto 0; }
+    .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 4rem 5vw; }
+    .testimonials-scroll { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 1.2rem; text-align: center; }
+    .hero-stat-row { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Lumin<span>a</span></a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#pricing" class="nav-cta">Get Started →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="hero-grid max-w">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Now in Public Beta</div>
+      <h1>Build faster.<br><em>Ship smarter.</em></h1>
+      <p class="hero-sub">Lumina gives your team the analytics, automation, and collaboration tools to turn bold ideas into shipped products — without the chaos.</p>
+      <div class="hero-actions">
+        <a href="#pricing" class="btn-primary">Start for free →</a>
+        <a href="#features" class="btn-ghost">See how it works</a>
+      </div>
+      <div class="hero-stat-row">
+        <div>
+          <div class="hero-stat-num">40k+</div>
+          <div class="hero-stat-label">Teams using Lumina</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">98%</div>
+          <div class="hero-stat-label">Uptime SLA</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">3×</div>
+          <div class="hero-stat-label">Faster ship cycle</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-main">
+        <div class="card-badge">All systems live</div>
+        <div style="font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:600;color:#888897;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:4px;">Revenue this week</div>
+        <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;letter-spacing:-0.04em;color:#0e0e0f;">$84,320</div>
+        <div class="card-chart">
+          <div class="bar" style="height:35%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar med" style="height:45%"></div>
+          <div class="bar" style="height:65%"></div>
+          <div class="bar active" style="height:85%"></div>
+          <div class="bar active" style="height:75%"></div>
+          <div class="bar active" style="height:100%"></div>
+        </div>
+        <div class="card-line"><span class="card-line-label">New users</span><span class="card-line-val" style="color:#1a9e6b">+1,284 ↑</span></div>
+        <div class="card-line"><span class="card-line-label">Conversion</span><span class="card-line-val">12.4%</span></div>
+        <div class="card-line"><span class="card-line-label">Churn rate</span><span class="card-line-val" style="color:#ff4d1c">2.1%</span></div>
+      </div>
+      <div class="float-card top-right">
+        <div class="float-icon">⚡</div>
+        <div class="float-title">Deploy complete</div>
+        <div class="float-sub">v2.4.1 is live — 2m ago</div>
+      </div>
+      <div class="float-card bot-left">
+        <div class="float-icon">🎯</div>
+        <div class="float-title">Goal hit!</div>
+        <div class="float-sub">Q3 target exceeded 108%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="max-w">
+    <div class="center">
+      <div class="section-label">Why Lumina</div>
+      <h2 class="section-title">Everything your team needs — in one place</h2>
+      <p class="section-sub">Stop juggling a dozen tools. Lumina unifies analytics, workflows, and collaboration into a single, focused workspace.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feat-icon orange">📊</div>
+        <div class="feat-title">Real-time Analytics</div>
+        <p class="feat-desc">Watch your metrics move as they happen. Customisable dashboards built for every role — from founder to frontend engineer.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feat-icon yellow">⚡</div>
+        <div class="feat-title">Workflow Automation</div>
+        <p class="feat-desc">Connect your tools, set triggers, and watch repetitive tasks disappear. 200+ native integrations, zero-code required.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feat-icon green">🛡️</div>
+        <div class="feat-title">Enterprise Security</div>
+        <p class="feat-desc">SOC 2 Type II certified. End-to-end encryption, SSO support, granular role permissions, and full audit logs.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feat-icon blue">🤝</div>
+        <div class="feat-title">Team Collaboration</div>
+        <p class="feat-desc">Shared workspaces, live commenting, and async updates keep your team aligned whether they're in one office or across six time zones.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feat-icon purple">🧠</div>
+        <div class="feat-title">AI-Powered Insights</div>
+        <p class="feat-desc">Surface anomalies, forecast trends, and get plain-English summaries of complex data before your next standup.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feat-icon pink">🚀</div>
+        <div class="feat-title">One-click Deploy</div>
+        <p class="feat-desc">From staging to production in seconds. Built-in rollback, canary releases, and feature flags so you can ship with confidence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="max-w">
+    <div class="center">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-title">Loved by teams that ship</h2>
+      <p class="section-sub">Thousands of teams rely on Lumina every day. Here's what a few of them have to say.</p>
+    </div>
+    <div class="testimonials-scroll">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Lumina cut our sprint planning time in half. The real-time dashboards mean everyone walks into standup <strong>already on the same page</strong>. Genuinely the best ops decision we made this year."</p>
+        <div class="testi-avatar">
+          <div class="avatar-circle av-orange">SR</div>
+          <div>
+            <div class="testi-name">Sarah Rowe</div>
+            <div class="testi-role">VP of Product, Cascade</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"We tried four other platforms. Nothing came close. The <strong>AI summaries alone</strong> save my team three hours every week — and the support team actually responds within minutes."</p>
+        <div class="testi-avatar">
+          <div class="avatar-circle av-blue">MK</div>
+          <div>
+            <div class="testi-name">Marcus Kim</div>
+            <div class="testi-role">CTO, NovaSpark</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Our deployment frequency went from weekly to daily after adopting Lumina. The <strong>one-click deploys and rollback</strong> feature alone justified the entire cost in month one."</p>
+        <div class="testi-avatar">
+          <div class="avatar-circle av-green">AJ</div>
+          <div>
+            <div class="testi-name">Anika Joshi</div>
+            <div class="testi-role">Engineering Lead, Prism Health</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="max-w">
+    <div class="center">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title" style="max-width:none;">Simple, transparent pricing</h2>
+      <p class="section-sub" style="max-width:none;">Start free. Scale as you grow. No hidden fees, no surprises.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="plan-card">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price"><sup>$</sup>0<sub>/mo</sub></div>
+        <p class="plan-desc">Perfect for solo builders and small projects.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Up to 3 projects</li>
+          <li>5 team members</li>
+          <li>Basic analytics</li>
+          <li>Community support</li>
+          <li>1 GB storage</li>
+        </ul>
+        <button class="plan-btn">Get started free</button>
+      </div>
+      <div class="plan-card popular">
+        <div class="popular-badge">Most popular</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price"><sup>$</sup>49<sub>/mo</sub></div>
+        <p class="plan-desc">For growing teams that move fast.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Unlimited projects</li>
+          <li>Up to 50 members</li>
+          <li>Advanced analytics + AI</li>
+          <li>Priority email support</li>
+          <li>50 GB storage</li>
+          <li>Workflow automations</li>
+          <li>Custom integrations</li>
+        </ul>
+        <button class="plan-btn">Start 14-day trial</button>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price" style="font-size:2rem;padding-top:6px;">Custom</div>
+        <p class="plan-desc">Tailored for large organisations and compliance needs.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Unlimited everything</li>
+          <li>SSO & SAML</li>
+          <li>SOC 2 / HIPAA</li>
+          <li>Dedicated success manager</li>
+          <li>SLA guarantee (99.99%)</li>
+          <li>On-premise option</li>
+          <li>Custom data retention</li>
+        </ul>
+        <button class="plan-btn">Contact sales</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="max-w contact-wrap">
+    <div class="contact-info">
+      <div class="section-label">Contact us</div>
+      <h2 class="section-title">Let's build something together</h2>
+      <p class="section-sub">Have a question, a custom request, or just want to say hi? We reply within one business day.</p>
+      <div class="contact-detail">
+        <div class="contact-icon">📧</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-val">hello@lumina.app</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Office</div>
+          <div class="contact-val">12 Tech Park, Bengaluru, Karnataka 560001</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">💬</div>
+        <div>
+          <div class="contact-label">Live chat</div>
+          <div class="contact-val">Available Mon–Fri, 9am–6pm IST</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div style="font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:-0.02em;color:#0e0e0f;margin-bottom:1.6rem;">Send us a message</div>
+      <div class="form-row">
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">First name</label>
+          <input type="text" class="form-control" placeholder="Aarav">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Last name</label>
+          <input type="text" class="form-control" placeholder="Sharma">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Work email</label>
+        <input type="email" class="form-control" placeholder="you@company.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Subject</label>
+        <input type="text" class="form-control" placeholder="How can we help?">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-control" placeholder="Tell us a bit more…"></textarea>
+      </div>
+      <button class="form-submit" onclick="this.textContent='Message sent ✓'; this.style.background='#1a9e6b'; setTimeout(()=>{this.textContent='Send message →'; this.style.background='';}, 3000)">Send message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="max-w">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Lumin<span>a</span></div>
+        <p class="footer-tagline">The all-in-one platform for teams that build, ship, and grow. Trusted by 40,000+ teams worldwide.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Product</div>
+        <ul class="footer-links">
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Changelog</a></li>
+          <li><a href="#">Roadmap</a></li>
+          <li><a href="#">Status</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Lumina Technologies. All rights reserved.</span>
+      <div class="social-row">
+        <button class="social-btn">𝕏</button>
+        <button class="social-btn">in</button>
+        <button class="social-btn">gh</button>
+        <button class="social-btn">yt</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
