@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CINÉPLEX — Film Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@200;300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0c0b0a;
+      --paper: #f2ede4;
+      --red: #d4251a;
+      --amber: #e8a020;
+      --offwhite: #f7f3ec;
+      --muted: #7c7670;
+      --ease: cubic-bezier(0.76, 0, 0.24, 1);
+      --dur: 0.72s;
+    }
+
+    html { height: 100%; }
+
+    body {
+      min-height: 100%;
+      background: var(--ink);
+      font-family: 'Barlow Condensed', sans-serif;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* Halftone vignette overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 30%, rgba(8,7,6,0.65) 100%);
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    /* ─── MASTHEAD ─── */
+    .masthead {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 40px 18px;
+      border-bottom: 1px solid rgba(242,237,228,0.1);
+    }
+
+    .masthead-logo {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.55rem;
+      letter-spacing: 0.18em;
+      color: var(--paper);
+      line-height: 1;
+    }
+
+    .masthead-logo span {
+      color: var(--red);
+    }
+
+    .masthead-tagline {
+      font-size: 0.62rem;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .masthead-year {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+    }
+
+    /* ─── HEADLINE ─── */
+    .headline {
+      position: relative;
+      z-index: 10;
+      padding: 42px 40px 36px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .headline h1 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(3.2rem, 7vw, 6.5rem);
+      letter-spacing: 0.03em;
+      color: var(--paper);
+      line-height: 0.92;
+      text-transform: uppercase;
+    }
+
+    .headline h1 em {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--amber);
+      display: block;
+      font-size: 0.68em;
+    }
+
+    .headline-meta {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .headline-meta p {
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      line-height: 2;
+      text-transform: uppercase;
+    }
+
+    .headline-meta p strong {
+      color: var(--paper);
+      font-weight: 600;
+    }
+
+    /* ─── RULE ─── */
+    .rule {
+      margin: 0 40px 32px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--red) 0%, rgba(242,237,228,0.15) 60%, transparent 100%);
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ─── GALLERY ─── */
+    .gallery {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      gap: 6px;
+      padding: 0 40px;
+      height: 560px;
+    }
+
+    .card {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      min-width: 56px;
+      transition: flex var(--dur) var(--ease);
+      /* Film poster aspect: tall rectangles */
+    }
+
+    .card.active { flex: 5.5; }
+
+    /* ── Poster image ── */
+    .card-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center top;
+      transition: transform 0.9s var(--ease), filter var(--dur) var(--ease);
+      transform: scale(1.06);
+      filter: brightness(0.42) contrast(1.1) saturate(0.6);
+    }
+
+    .card.active .card-img {
+      transform: scale(1);
+      filter: brightness(0.62) contrast(1.05) saturate(0.9);
+    }
+
+    .card:hover:not(.active) .card-img {
+      filter: brightness(0.52) contrast(1.1) saturate(0.7);
+      transform: scale(1.04);
+    }
+
+    /* ── Color grade tint ── */
+    .card-grade {
+      position: absolute;
+      inset: 0;
+      mix-blend-mode: color;
+      opacity: 0;
+      transition: opacity var(--dur);
+      z-index: 1;
+    }
+    .card.active .card-grade { opacity: 0.22; }
+
+    /* ── Bottom ink wash ── */
+    .card-wash {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(
+        to top,
+        rgba(12,11,10,0.98) 0%,
+        rgba(12,11,10,0.7) 28%,
+        rgba(12,11,10,0.15) 55%,
+        transparent 75%
+      );
+    }
+
+    /* ── Top fade ── */
+    .card-topfade {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 120px;
+      z-index: 2;
+      background: linear-gradient(to bottom, rgba(12,11,10,0.5) 0%, transparent 100%);
+      transition: opacity var(--dur);
+    }
+
+    .card.active .card-topfade { opacity: 0; }
+
+    /* ── Rating badge top-right ── */
+    .card-rating {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 6;
+      width: 36px;
+      height: 36px;
+      border: 2px solid var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Anton', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--amber);
+      opacity: 0;
+      transform: scale(0.7);
+      transition: opacity 0.4s 0.2s, transform 0.4s 0.2s var(--ease);
+    }
+
+    .card.active .card-rating {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ── Collapsed: rotated title ── */
+    .card-spine {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-spine-text {
+      font-family: 'Anton', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.22em;
+      color: rgba(242,237,228,0.3);
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      white-space: nowrap;
+      transition: opacity var(--dur);
+    }
+
+    .card.active .card-spine-text { opacity: 0; }
+
+    /* ── Active: full content ── */
+    .card-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 6;
+      padding: 0 28px 30px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s 0.15s, transform 0.5s 0.15s var(--ease);
+    }
+
+    .card.active .card-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Genre pill */
+    .card-genre {
+      display: inline-block;
+      background: var(--red);
+      color: var(--paper);
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(1.8rem, 3.2vw, 3rem);
+      letter-spacing: 0.04em;
+      line-height: 0.95;
+      color: var(--paper);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .card-year {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--amber);
+      margin-bottom: 12px;
+    }
+
+    .card-divider {
+      width: 32px;
+      height: 2px;
+      background: var(--red);
+      margin-bottom: 12px;
+    }
+
+    .card-desc {
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      line-height: 1.75;
+      color: rgba(242,237,228,0.55);
+      max-width: 300px;
+      margin-bottom: 20px;
+    }
+
+    /* Cast row */
+    .card-cast {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .cast-label {
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .cast-names {
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: rgba(242,237,228,0.7);
+    }
+
+    /* CTA button */
+    .card-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--red);
+      color: var(--paper);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      padding: 11px 22px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.12);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .card-btn:hover::after { opacity: 1; }
+    .card-btn:hover { transform: translateY(-1px); }
+
+    /* ─── TICKER / FOOTER ─── */
+    .ticker-wrap {
+      position: relative;
+      z-index: 10;
+      margin-top: 28px;
+      border-top: 1px solid rgba(242,237,228,0.08);
+      border-bottom: 1px solid rgba(242,237,228,0.08);
+      overflow: hidden;
+      padding: 10px 0;
+    }
+
+    .ticker {
+      display: flex;
+      gap: 0;
+      animation: ticker 22s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+
+    .ticker-item {
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 36px;
+    }
+
+    .ticker-item span {
+      color: var(--red);
+      margin-right: 10px;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── NAV ROW ─── */
+    .nav-row {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 22px 40px 36px;
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border: 1.5px solid rgba(242,237,228,0.2);
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+      transform: rotate(45deg);
+      background: transparent;
+    }
+
+    .nav-dot.active {
+      background: var(--red);
+      border-color: var(--red);
+      transform: rotate(45deg) scale(1.4);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 720px) {
+      .masthead, .headline, .rule { padding-left: 20px; padding-right: 20px; }
+      .gallery { padding: 0 20px; height: auto; flex-direction: column; min-height: 680px; }
+      .card { min-height: 64px; min-width: unset; }
+      .card.active { flex: 6; min-height: 340px; }
+      .card-spine-text { writing-mode: horizontal-tb; transform: none; }
+      .headline { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .headline-meta { text-align: left; }
+      .rule { margin-left: 20px; margin-right: 20px; }
+      .nav-row { padding: 18px 20px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-logo">CINÉ<span>PLEX</span></div>
+    <div class="masthead-tagline">Now Showing — Select Your Feature</div>
+    <div class="masthead-year">MMXXV</div>
+  </header>
+
+  <!-- Headline -->
+  <div class="headline">
+    <h1>NOW<br><em>Showing</em><br>TONIGHT</h1>
+    <div class="headline-meta">
+      <p><strong>6</strong> Features</p>
+      <p><strong>Click</strong> to expand</p>
+      <p>← → keys navigate</p>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- Gallery -->
+  <div class="gallery" id="gallery">
+
+    <!-- 1. The Godfather -->
+    <div class="card active" data-index="0">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&auto=format&fit=crop&q=80')"></div>
+      <div class="card-grade" style="background:#8b2020"></div>
+      <div class="card-wash"></div>
+      <div class="card-topfade"></div>
+      <div class="card-rating">R</div>
+      <div class="card-spine"><span class="card-spine-text">The Godfather</span></div>
+      <div class="card-content">
+        <span class="card-genre">Crime · Drama</span>
+        <h2 class="card-title">The<br>Godfather</h2>
+        <p class="card-year">Francis Ford Coppola, 1972</p>
+        <div class="card-divider"></div>
+        <p class="card-desc">The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.</p>
+        <div class="card-cast">
+          <span class="cast-label">Starring</span>
+          <span class="cast-names">Marlon Brando · Al Pacino · James Caan</span>
+        </div>
+        <button class="card-btn">▶ &nbsp;Watch Now</button>
+      </div>
+    </div>
+
+    <!-- 2. Blade Runner -->
+    <div class="card" data-index="1">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1605106702842-01a887a31122?w=800&auto=format&fit=crop&q=80')"></div>
+      <div class="card-grade" style="background:#1a3a5c"></div>
+      <div class="card-wash"></div>
+      <div class="card-topfade"></div>
+      <div class="card-rating">R</div>
+      <div class="card-spine"><span class="card-spine-text">Blade Runner</span></div>
+      <div class="card-content">
+        <span class="card-genre">Sci-Fi · Noir</span>
+        <h2 class="card-title">Blade<br>Runner</h2>
+        <p class="card-year">Ridley Scott, 1982</p>
+        <div class="card-divider"></div>
+        <p class="card-desc">A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth seeking their creator.</p>
+        <div class="card-cast">
+          <span class="cast-label">Starring</span>
+          <span class="cast-names">Harrison Ford · Rutger Hauer · Sean Young</span>
+        </div>
+        <button class="card-btn">▶ &nbsp;Watch Now</button>
+      </div>
+    </div>
+
+    <!-- 3. Pulp Fiction -->
+    <div class="card" data-index="2">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&auto=format&fit=crop&q=80')"></div>
+      <div class="card-grade" style="background:#3d1a00"></div>
+      <div class="card-wash"></div>
+      <div class="card-topfade"></div>
+      <div class="card-rating">R</div>
+      <div class="card-spine"><span class="card-spine-text">Pulp Fiction</span></div>
+      <div class="card-content">
+        <span class="card-genre">Crime · Thriller</span>
+        <h2 class="card-title">Pulp<br>Fiction</h2>
+        <p class="card-year">Quentin Tarantino, 1994</p>
+        <div class="card-divider"></div>
+        <p class="card-desc">The lives of two mob hitmen, a boxer, a gangster and his wife intertwine in four tales of violence and redemption.</p>
+        <div class="card-cast">
+          <span class="cast-label">Starring</span>
+          <span class="cast-names">John Travolta · Samuel L. Jackson · Uma Thurman</span>
+        </div>
+        <button class="card-btn">▶ &nbsp;Watch Now</button>
+      </div>
+    </div>
+
+    <!-- 4. 2001: A Space Odyssey -->
+    <div class="card" data-index="3">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&auto=format&fit=crop&q=80')"></div>
+      <div class="card-grade" style="background:#000d2e"></div>
+      <div class="card-wash"></div>
+      <div class="card-topfade"></div>
+      <div class="card-rating">G</div>
+      <div class="card-spine"><span class="card-spine-text">2001: A Space Odyssey</span></div>
+      <div class="card-content">
+        <span class="card-genre">Sci-Fi · Mystery</span>
+        <h2 class="card-title">2001: A Space<br>Odyssey</h2>
+        <p class="card-year">Stanley Kubrick, 1968</p>
+        <div class="card-divider"></div>
+        <p class="card-desc">Humanity finds a mysterious, obviously artificial object buried beneath the Lunar surface. A crew of astronauts is sent to investigate.</p>
+        <div class="card-cast">
+          <span class="cast-label">Starring</span>
+          <span class="cast-names">Keir Dullea · Gary Lockwood · Douglas Rain</span>
+        </div>
+        <button class="card-btn">▶ &nbsp;Watch Now</button>
+      </div>
+    </div>
+
+    <!-- 5. Casablanca -->
+    <div class="card" data-index="4">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&auto=format&fit=crop&q=80')"></div>
+      <div class="card-grade" style="background:#1a1200"></div>
+      <div class="card-wash"></div>
+      <div class="card-topfade"></div>
+      <div class="card-rating">PG</div>
+      <div class="card-spine"><span class="card-spine-text">Casablanca</span></div>
+      <div class="card-content">
+        <span class="card-genre">Romance · Drama</span>
+        <h2 class="card-title">Casa-<br>blanca</h2>
+        <p class="card-year">Michael Curtiz, 1942</p>
+        <div class="card-divider"></div>
+        <p class="card-desc">A cynical expatriate American café owner struggles to decide whether to help his former lover and her fugitive husband escape the Nazis.</p>
+        <div class="card-cast">
+          <span class="cast-label">Starring</span>
+          <span class="cast-names">Humphrey Bogart · Ingrid Bergman · Paul Henreid</span>
+        </div>
+        <button class="card-btn">▶ &nbsp;Watch Now</button>
+      </div>
+    </div>
+
+    <!-- 6. Apocalypse Now -->
+    <div class="card" data-index="5">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=800&auto=format&fit=crop&q=80')"></div>
+      <div class="card-grade" style="background:#1a0a00"></div>
+      <div class="card-wash"></div>
+      <div class="card-topfade"></div>
+      <div class="card-rating">R</div>
+      <div class="card-spine"><span class="card-spine-text">Apocalypse Now</span></div>
+      <div class="card-content">
+        <span class="card-genre">War · Drama</span>
+        <h2 class="card-title">Apocalypse<br>Now</h2>
+        <p class="card-year">Francis Ford Coppola, 1979</p>
+        <div class="card-divider"></div>
+        <p class="card-desc">A special forces captain is sent on a secret mission into Cambodia to assassinate a renegade colonel who has gone insane.</p>
+        <div class="card-cast">
+          <span class="cast-label">Starring</span>
+          <span class="cast-names">Martin Sheen · Marlon Brando · Robert Duvall</span>
+        </div>
+        <button class="card-btn">▶ &nbsp;Watch Now</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Ticker -->
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span class="ticker-item"><span>★</span>The Godfather — Coppola — 1972</span>
+      <span class="ticker-item"><span>★</span>Blade Runner — Scott — 1982</span>
+      <span class="ticker-item"><span>★</span>Pulp Fiction — Tarantino — 1994</span>
+      <span class="ticker-item"><span>★</span>2001: A Space Odyssey — Kubrick — 1968</span>
+      <span class="ticker-item"><span>★</span>Casablanca — Curtiz — 1942</span>
+      <span class="ticker-item"><span>★</span>Apocalypse Now — Coppola — 1979</span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item"><span>★</span>The Godfather — Coppola — 1972</span>
+      <span class="ticker-item"><span>★</span>Blade Runner — Scott — 1982</span>
+      <span class="ticker-item"><span>★</span>Pulp Fiction — Tarantino — 1994</span>
+      <span class="ticker-item"><span>★</span>2001: A Space Odyssey — Kubrick — 1968</span>
+      <span class="ticker-item"><span>★</span>Casablanca — Curtiz — 1942</span>
+      <span class="ticker-item"><span>★</span>Apocalypse Now — Coppola — 1979</span>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <div class="nav-row">
+    <div class="nav-dot active" data-index="0"></div>
+    <div class="nav-dot" data-index="1"></div>
+    <div class="nav-dot" data-index="2"></div>
+    <div class="nav-dot" data-index="3"></div>
+    <div class="nav-dot" data-index="4"></div>
+    <div class="nav-dot" data-index="5"></div>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const dots  = document.querySelectorAll('.nav-dot');
+    let current = 0;
+
+    function activate(i) {
+      current = i;
+      cards.forEach((c, j) => c.classList.toggle('active', j === i));
+      dots.forEach((d, j) => d.classList.toggle('active', j === i));
+    }
+
+    cards.forEach((c, i) => c.addEventListener('click', () => activate(i)));
+    dots.forEach((d, i) => d.addEventListener('click', () => activate(i)));
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') activate((current + 1) % cards.length);
+      if (e.key === 'ArrowLeft')  activate((current - 1 + cards.length) % cards.length);
+    });
+  </script>
+</body>
+</html>
