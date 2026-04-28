@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live Clock</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f0f13;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .card {
+      background: #1a1a24;
+      border: 1px solid #2e2e42;
+      border-radius: 20px;
+      padding: 3rem 3.5rem;
+      text-align: center;
+      box-shadow: 0 0 60px rgba(100, 80, 255, 0.08);
+    }
+
+    .live-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 2rem;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #1D9E75;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+
+    .clock-face {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 1.5rem;
+    }
+
+    .seg { display: flex; flex-direction: column; align-items: center; }
+
+    .seg-val {
+      font-family: 'Courier New', monospace;
+      font-size: 80px;
+      font-weight: 700;
+      color: #f0eeff;
+      line-height: 1;
+      letter-spacing: -3px;
+    }
+
+    .seg-label {
+      font-size: 11px;
+      color: #555;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    .colon {
+      font-family: 'Courier New', monospace;
+      font-size: 80px;
+      font-weight: 700;
+      color: #6450ff;
+      line-height: 1;
+      padding: 0 2px;
+      transition: opacity 0.1s;
+    }
+
+    .ampm-badge {
+      font-size: 20px;
+      font-weight: 600;
+      color: #6450ff;
+      background: #1e1a38;
+      border: 1px solid #3a3460;
+      border-radius: 8px;
+      padding: 6px 14px;
+      align-self: flex-end;
+      margin-bottom: 16px;
+      margin-left: 4px;
+    }
+
+    .date-line {
+      font-size: 15px;
+      color: #666;
+      letter-spacing: 0.03em;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="live-indicator">
+      <span class="dot"></span> live
+    </div>
+
+    <div class="clock-face">
+      <div class="seg">
+        <span class="seg-val" id="hh">--</span>
+        <span class="seg-label">hours</span>
+      </div>
+      <span class="colon" id="colon1">:</span>
+      <div class="seg">
+        <span class="seg-val" id="mm">--</span>
+        <span class="seg-label">minutes</span>
+      </div>
+      <span class="colon">:</span>
+      <div class="seg">
+        <span class="seg-val" id="ss">--</span>
+        <span class="seg-label">seconds</span>
+      </div>
+      <span class="ampm-badge" id="ampm">--</span>
+    </div>
+
+    <div class="date-line" id="dateline"></div>
+  </div>
+
+  <script>
+    const days   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const months = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function tick() {
+      const now  = new Date();
+      let   h    = now.getHours();
+      const m    = now.getMinutes();
+      const s    = now.getSeconds();
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12 || 12;
+
+      document.getElementById('hh').textContent    = pad(h);
+      document.getElementById('mm').textContent    = pad(m);
+      document.getElementById('ss').textContent    = pad(s);
+      document.getElementById('ampm').textContent  = ampm;
+      document.getElementById('colon1').style.opacity = s % 2 === 0 ? '1' : '0.25';
+
+      document.getElementById('dateline').textContent =
+        days[now.getDay()] + ', ' + months[now.getMonth()] + ' ' +
+        now.getDate() + ', ' + now.getFullYear();
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
