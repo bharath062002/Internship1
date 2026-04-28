@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expanding Cards Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --charcoal: #1a1a1a;
+      --gold: #c9a84c;
+      --muted: #7a7468;
+      --card-radius: 16px;
+      --transition: 0.75s cubic-bezier(0.77, 0, 0.18, 1);
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--charcoal);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      padding: 40px 20px;
+    }
+
+    /* Subtle grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.35;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    header .eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 200;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      color: var(--cream);
+      letter-spacing: 0.02em;
+    }
+
+    header h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    header p {
+      margin-top: 12px;
+      font-size: 0.72rem;
+      font-weight: 200;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* ——— Gallery ——— */
+    .gallery {
+      display: flex;
+      gap: 14px;
+      width: 100%;
+      max-width: 1100px;
+      height: 520px;
+    }
+
+    .card {
+      flex: 1;
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      transition: flex var(--transition);
+      min-width: 60px;
+    }
+
+    .card.active {
+      flex: 5;
+    }
+
+    /* Background image layer */
+    .card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  filter var(--transition);
+      filter: brightness(0.55) saturate(0.8);
+      transform: scale(1.08);
+    }
+
+    .card.active .card-bg {
+      filter: brightness(0.72) saturate(1.05);
+      transform: scale(1);
+    }
+
+    .card:hover:not(.active) .card-bg {
+      filter: brightness(0.65) saturate(0.9);
+    }
+
+    /* Gradient overlays */
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(10, 8, 5, 0.9) 0%,
+        rgba(10, 8, 5, 0.3) 40%,
+        transparent 70%
+      );
+      z-index: 1;
+      transition: opacity var(--transition);
+    }
+
+    .card.active::after {
+      background: linear-gradient(
+        to top,
+        rgba(10, 8, 5, 0.85) 0%,
+        rgba(10, 8, 5, 0.2) 50%,
+        transparent 75%
+      );
+    }
+
+    /* Content */
+    .card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      padding: 28px 28px 32px;
+      transform: translateY(6px);
+      transition: transform var(--transition), opacity var(--transition);
+      opacity: 0;
+    }
+
+    .card.active .card-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      font-size: 0.68rem;
+      font-weight: 200;
+      letter-spacing: 0.1em;
+      color: rgba(245, 240, 232, 0.6);
+      line-height: 1.7;
+      max-width: 280px;
+      margin-bottom: 18px;
+    }
+
+    .card-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: 1px solid rgba(201, 168, 76, 0.5);
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 9px 18px;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+    }
+
+    .card-btn:hover {
+      background: var(--gold);
+      color: var(--charcoal);
+      border-color: var(--gold);
+    }
+
+    .card-btn svg {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.25s;
+    }
+
+    .card-btn:hover svg { transform: translateX(3px); }
+
+    /* Collapsed label */
+    .card-label {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-90deg);
+      white-space: nowrap;
+      z-index: 2;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.45);
+      transition: opacity var(--transition);
+      pointer-events: none;
+    }
+
+    .card.active .card-label { opacity: 0; }
+
+    /* Gold accent line */
+    .card-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      z-index: 3;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .card.active .card-line { opacity: 1; }
+
+    /* Count indicator */
+    footer {
+      margin-top: 40px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(245, 240, 232, 0.2);
+      transition: background 0.4s, transform 0.4s;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: var(--gold);
+      transform: scale(1.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .gallery {
+        flex-direction: column;
+        height: auto;
+        min-height: 600px;
+      }
+      .card {
+        flex: 1;
+        min-height: 70px;
+        min-width: unset;
+      }
+      .card.active {
+        flex: 5;
+        min-height: 300px;
+      }
+      .card-label {
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="eyebrow">Visual Experience</p>
+    <h1>The <em>Gallery</em></h1>
+    <p>Click a card to explore</p>
+  </header>
+
+  <div class="gallery" id="gallery">
+
+    <div class="card active" data-index="0">
+      <div class="card-line"></div>
+      <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&auto=format&fit=crop')"></div>
+      <span class="card-label">Alpine</span>
+      <div class="card-content">
+        <p class="card-number">01 / 06</p>
+        <h2 class="card-title">Alpine<br>Silence</h2>
+        <p class="card-desc">Where the peaks pierce the clouds and the air holds its breath at the edge of forever.</p>
+        <button class="card-btn">
+          Explore
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="card" data-index="1">
+      <div class="card-line"></div>
+      <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=900&auto=format&fit=crop')"></div>
+      <span class="card-label">Desert</span>
+      <div class="card-content">
+        <p class="card-number">02 / 06</p>
+        <h2 class="card-title">Desert<br>Dunes</h2>
+        <p class="card-desc">Sculpted by wind over centuries — the living canvas of an ancient, breathing land.</p>
+        <button class="card-btn">
+          Explore
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="card" data-index="2">
+      <div class="card-line"></div>
+      <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=900&auto=format&fit=crop')"></div>
+      <span class="card-label">Forest</span>
+      <div class="card-content">
+        <p class="card-number">03 / 06</p>
+        <h2 class="card-title">Ancient<br>Forest</h2>
+        <p class="card-desc">Towers of oak and cedar filtering golden light into secret cathedral chambers.</p>
+        <button class="card-btn">
+          Explore
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="card" data-index="3">
+      <div class="card-line"></div>
+      <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=900&auto=format&fit=crop')"></div>
+      <span class="card-label">Ocean</span>
+      <div class="card-content">
+        <p class="card-number">04 / 06</p>
+        <h2 class="card-title">Open<br>Ocean</h2>
+        <p class="card-desc">A horizon with no end — the sea in perpetual conversation with the sky above.</p>
+        <button class="card-btn">
+          Explore
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="card" data-index="4">
+      <div class="card-line"></div>
+      <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=900&auto=format&fit=crop')"></div>
+      <span class="card-label">Meadow</span>
+      <div class="card-content">
+        <p class="card-number">05 / 06</p>
+        <h2 class="card-title">Golden<br>Meadow</h2>
+        <p class="card-desc">A sea of wildflowers swaying — warmth caught in petals at the height of summer.</p>
+        <button class="card-btn">
+          Explore
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="card" data-index="5">
+      <div class="card-line"></div>
+      <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=900&auto=format&fit=crop')"></div>
+      <span class="card-label">Aurora</span>
+      <div class="card-content">
+        <p class="card-number">06 / 06</p>
+        <h2 class="card-title">Aurora<br>Borealis</h2>
+        <p class="card-desc">Nature's own theatre — light bending and dancing across the arctic night sky.</p>
+        <button class="card-btn">
+          Explore
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="dot active" data-index="0"></div>
+    <div class="dot" data-index="1"></div>
+    <div class="dot" data-index="2"></div>
+    <div class="dot" data-index="3"></div>
+    <div class="dot" data-index="4"></div>
+    <div class="dot" data-index="5"></div>
+  </footer>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const dots = document.querySelectorAll('.dot');
+
+    function activateCard(index) {
+      cards.forEach((c, i) => {
+        c.classList.toggle('active', i === index);
+      });
+      dots.forEach((d, i) => {
+        d.classList.toggle('active', i === index);
+      });
+    }
+
+    cards.forEach((card, i) => {
+      card.addEventListener('click', () => activateCard(i));
+    });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => activateCard(i));
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      const active = [...cards].findIndex(c => c.classList.contains('active'));
+      if (e.key === 'ArrowRight' && active < cards.length - 1) activateCard(active + 1);
+      if (e.key === 'ArrowLeft' && active > 0) activateCard(active - 1);
+    });
+  </script>
+
+</body>
+</html>
